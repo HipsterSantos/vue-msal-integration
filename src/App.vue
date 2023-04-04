@@ -2,17 +2,18 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <button @click="login" type="button" v-if="!user">Login with Microsoft</button>
+    <button @click="login" type="button" v-if="!user">Login with Microsoft AD</button>
     <button @click="callAPI" type="button" v-if="user">
-      Call Graph's /me API
+      Call to  Graph's /me API
     </button>
     <button @click="logout" type="button" v-if="user">
       Logout
     </button>
     <h3 v-if="user">Hello {{ user.name }}</h3>
     <pre v-if="userInfo">{{ JSON.stringify(userInfo, null, 4) }}</pre>
-    <p v-if="loginFailed">Login unsuccessful</p>
-    <p v-if="apiCallFailed">Graph API call unsuccessful</p>
+    <p v-if="loginFailed">login failed</p>
+    <p v-if="apiCallFailed">Microsoft 
+Graph API call unsuccessful</p>
   </div>
 </template>
 
@@ -24,7 +25,7 @@ export default {
   name: 'app',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js + MSAL.js App',
+      msg: 'MSAL.js testing',
       user: null,
       userInfo: null,
       apiCallFailed: false,

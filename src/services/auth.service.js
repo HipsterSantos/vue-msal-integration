@@ -5,11 +5,11 @@ export default class AuthService {
     let PROD_REDIRECT_URI = 'https://sunilbandla.github.io/vue-msal-sample/';
     let redirectUri = window.location.origin;
     if (window.location.hostname !== '127.0.0.1') {
-      redirectUri = PROD_REDIRECT_URI;
+      // redirectUri = PROD_REDIRECT_URI;
     }
     this.applicationConfig = {
-      clientID: '9d86c8dc-bf7d-4573-bc3c-4df2f2c32b93',
-      graphScopes: ['user.read']
+      clientID: '8a714e9c-61dd-4a7f-b8b1-da79a652446f',
+      graphScopes: ['user.read','user.readbasic.all']
     };
     this.app = new Msal.UserAgentApplication(
       this.applicationConfig.clientID,
@@ -27,6 +27,7 @@ export default class AuthService {
       idToken => {
         const user = this.app.getUser();
         if (user) {
+          debugger
           return user;
         } else {
           return null;
@@ -43,6 +44,7 @@ export default class AuthService {
   getToken() {
     return this.app.acquireTokenSilent(this.applicationConfig.graphScopes).then(
       accessToken => {
+        debugger
         return accessToken;
       },
       error => {
@@ -50,6 +52,7 @@ export default class AuthService {
           .acquireTokenPopup(this.applicationConfig.graphScopes)
           .then(
             accessToken => {
+              debugger
               return accessToken;
             },
             err => {
